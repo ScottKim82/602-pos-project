@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias alias="MyEmploee" type="employee.EmpBean"/>
+		<typeAlias alias="MyProduct" type="product.ProdBean"/>
+		<typeAlias alias="MyOrder" type="order.OrdBean"/>
+	</typeAliases>
+	
+	
+	<mappers>
+		<mapper resource="mybatis/product.xml"/> 
+		<mapper resource="mybatis/employee.xml"/>
+		<mapper resource="mybatis/order.xml"/> 
+	</mappers>
+</configuration>
