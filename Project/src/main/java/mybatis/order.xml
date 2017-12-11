@@ -19,5 +19,18 @@
 		on od.pnum = p.num and od.oid=#{oid} 
 		order by od.oid desc		
 	</select>
-
+	
+	<select id="selectProdList" resultType="MyProduct">
+		select * from product 
+		where categoryid = #{categoryid}
+		<!--select num, categoryid, productname, price, categoryname 
+		from product natural join category  
+		where categoryid = #{categoryid} -->
+	</select>
+	
+	<update id="UpdateProd">
+		update foodorder set qty = qty+1 
+		where oid= #{oid} and pnum = #{pnum}
+	</update>	
+	
 </mapper>

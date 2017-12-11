@@ -6,13 +6,12 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="MyEmploee" type="employee.EmpBean"/>
-		<typeAlias alias="MyProduct" type="product.ProdBean"/>
+		<typeAlias alias="MyProduct" type="order.ProdBean"/>
 		<typeAlias alias="MyOrder" type="order.OrdBean"/>
 	</typeAliases>
 	
 	
 	<mappers>
-		<mapper resource="mybatis/product.xml"/> 
 		<mapper resource="mybatis/employee.xml"/>
 		<mapper resource="mybatis/order.xml"/> 
 	</mappers>

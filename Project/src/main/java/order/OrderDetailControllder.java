@@ -7,15 +7,10 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import product.ProdBean;
-import product.ProdDao;
-
 
 @Controller
 public class OrderDetailControllder {
@@ -24,11 +19,13 @@ public class OrderDetailControllder {
 	private static final String getPage="OrderDetail";
 	
 	@Autowired
-	OrdDao orderdao;
+	OrdDao orderdao;	
 	
+
 	@RequestMapping(command)
 	public String doActionGet(
 			@RequestParam(value="oid") int oid,
+			@RequestParam(value="categoryid", required = false) String categoryid,
 			Model model) {
 		
 		System.out.println("OrderDetailControllder");
@@ -68,13 +65,21 @@ public class OrderDetailControllder {
 				
 			shoplists.add(shopinfo);	
 			
-			totalcount += shopinfo.getAmount();	
+			totalcount += shopinfo.getAmount();				
+		}	
 			
-		}
 		
-
+		
+		List<order.ProdBean> prodlists = null;
+		
+		if(categoryid !=null) {			
+			prodlists = orderdao.selectProdList(categoryid);
+			System.out.println("갯수: "+ prodlists.size());
+			model.addAttribute("prodlists", prodlists);		
+		}	
+		
 		model.addAttribute("oid", oid);		//송장번호(주문번호)
-		model.addAttribute("shoplists", shoplists);
+		model.addAttribute("shoplists", shoplists);		
 		model.addAttribute("totalcount", totalcount);
 		
 		

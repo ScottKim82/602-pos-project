@@ -45,5 +45,24 @@ public List<HashMap<String, Object>> ShopDetailView(int oid) {
 		return maplists;
 	}
 	
+	//OrderDetailController	//상품리스트가져오기
+	public List<ProdBean> selectProdList(String categoryid) {
+		System.out.println("dao.selectList: ");
+		System.out.println(categoryid);
+		
+		List<ProdBean> list = new ArrayList<ProdBean>() ;
+		list = sqlSessionTemplate.selectList(namespace+".selectProdList", categoryid);
+		System.out.println("prod list.size()"+list.size());
+		return list;		
+}
+	
+	//ProdController	//주문추가
+	public Integer addProd(Map<String, String> map) {
+		int cnt = -1;	
+		System.out.println("dao.addProd");		
+		cnt = sqlSessionTemplate.update(namespace+".UpdateProd", map);
+		System.out.println("cnt: "+cnt);
+		return cnt;
+	}
 
 }

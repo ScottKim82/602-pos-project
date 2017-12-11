@@ -8,16 +8,89 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script>
+function addProd(num, oid, categoryid){
+	location.href("prod.od?num="+num+"&oid="+oid+"&categoryid="+categoryid);
+}
+
+</script>
+
 </head>
 <body>
 OrderDetail.jsp
 <table>
 <tr>
-<td><%@ include file="Orderdetail1.jsp"%>   </td>
-<td><%@ include file="Orderdetail2.jsp"%></td>
+<td rowspan="2">
+	<table border="1" align="center">
+		<tr>
+			<td>순번	</td>
+			<td>상품명(상품번호)</td>
+			<td>수량	</td>
+			<td>단가	</td>
+			<td>금액	</td>
+		</tr>
+		<c:set var="total" value="0"/>	
+	<c:forEach items="${shoplists}" var="lists" varStatus="status">
+			<tr>
+				<td align="center">${status.count}</td>
+				<td>${lists.pname}(${lists.pnum})</td>
+				<td align="center">${lists.qty}</td>
+				<td align="right">${lists.price}원</td>
+				<td align="right">${lists.amount}원</td>		
+			</tr>
+		</c:forEach>
+	
+		<tr>
+			<td colspan="4" align="right">총합</td>
+			<td>${totalcount}원</td>
+		</tr> 
+		
+		<tr>
+			<td colspan="5">
+				<input type="button" value="현금결제">
+				<input type="button" value="카드결제">
+				<input type="button" value="자리이동">
+			</td>
+		</tr>
+	</table>	
+
+</td>
+<td>
+
+ 	<table border="1" align="center">
+		<tr>
+			<td><a href="order.od?categoryid=1&oid=${oid}">밥류</a></td>
+			<td><a href="order.od?categoryid=2&oid=${oid}">면류</a></td>
+			<td><a href="order.od?categoryid=3&oid=${oid}">분식류</a></td>
+			<td><a href="order.od?categoryid=4&oid=${oid}">덮밥류</a></td>
+			<td><a href="order.od?categoryid=5&oid=${oid}">찌개류</a></td>
+			<td><a href="order.od?categoryid=6&oid=${oid}">기타</a></td>
+		</tr>
+	</table>	 
+	<tr>
+<td>
+<c:if test="${prodlists ==null}">
+	<table>
+		<tr><td>
+		카테고리를 선택해주세요 
+		</td></tr>
+	</table>
+</c:if>
+
+<c:if test="${prodlists !=null}">
+	<table align="center">
+			<c:forEach items="${prodlists}" var="prodlists">
+				<tr>
+				<td>
+				<input type="button" value="${prodlists.productname}" name="productname" onclick="addProd(${prodlists.num}, ${oid}, ${prodlists.categoryid})"></td>
+				<td align="right">${prodlists.price}원</td>
+				<!-- <td><input type="text" name="qty" size="3">개</td> -->
+		</c:forEach>
+	</table>
+</c:if>
+</td>
 </tr>
 </table>
-
 
 </body>
 </html>

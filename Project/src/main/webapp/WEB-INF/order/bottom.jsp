@@ -5,8 +5,8 @@
 
 <tr height=40>
 <td colspan="3" align="center">
- <a href=""><input type="button" value="일일결산"></a>
- <a href=""><input type="button" value="월일결산"></a>
+ <a href=""><input type="button" value="일일결산" onclick="daily()"></a>
+ <a href=""><input type="button" value="월일결산" onclick="month()"></a>
 </td>
 </tr>
 	</table>

@@ -54,7 +54,7 @@ drop table CATEGORY purge ;
 카테고리테이블
 CREATE TABLE CATEGORY (
   categoryid number not null primary key, 
-  category_name varchar2(45)
+  categoryname varchar2(45)
 );
 
 INSERT INTO CATEGORY VALUES(cate_seq.nextval,'김밥류');
@@ -66,17 +66,16 @@ INSERT INTO CATEGORY VALUES(cate_seq.nextval,'기타');
 
 ------------------------------------------------------------------------------------------------------------
 drop sequence pro_seq;
-create sequence pro_seq start with 1 increment by 1 nocache ;
+create sequence pro_seq;
 
-drop table products purge ;
+drop table product purge ;
 
 상품테이블
-CREATE TABLE products (
+CREATE TABLE product (
   num number primary key, 
-  categoryid number notnull, 
+  categoryid number not null, 
   productname varchar2(45), 
-  price number, 
-  foreign key(categoryid) references CATEGORY(categoryid)
+  price number 
 );
 
 
