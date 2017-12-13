@@ -1,5 +1,6 @@
 package employee;
 
+//직원관련
 public class EmpBean {
 	  private int num;
 	  private String name;

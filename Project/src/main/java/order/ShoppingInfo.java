@@ -1,5 +1,6 @@
 package order;
 
+//상품+주문관련
 public class ShoppingInfo {
 
 	
@@ -7,8 +8,7 @@ public class ShoppingInfo {
 	private String pname;
 	private int qty;
 	private int price;
-	private int amount;
-	
+	private int amount;	
 	
 	
 	public int getPnum() {

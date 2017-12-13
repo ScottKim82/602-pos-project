@@ -9,6 +9,7 @@
 	<configs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/emp-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/ord-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/payment-servlet.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>

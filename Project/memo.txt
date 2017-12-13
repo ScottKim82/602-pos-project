@@ -12,7 +12,7 @@ drop table foodorder;
 create table foodorder(
   oid number not null,
   orderdate date default sysdate, 
-  pnum number references products(num) on delete set null,
+  pnum number references product(num) on delete set null,
   qty number
 );
 
@@ -126,5 +126,29 @@ INSERT INTO PRODUCT VALUES(pro_seq.nextval,6,'ÁÖ¸Ô¹ä',3000);
 commit;
 
 ------------------------------------------------------------------------------------------------------------
+
+drop table payment purge ;
+
+»óÇ°Å×ÀÌºí
+CREATE TABLE payment (  
+  pname varchar2(45),
+  qty number, 
+  price number,
+  amount number,
+  paydate date default sysdate
+);
+
+
+INSERT INTO payment VALUES('±è¹ä',1, 3000, 3000, sysdate);
+INSERT INTO payment VALUES('±è¹ä',1, 3000, 3000, '17-12-13');
+
+
+create table paymentday(
+	totalprice number,
+	paymenttype number,
+	paydate date default sysdate
+);
+(Ä«µå°áÁ¦ 1, Çö±Ý°áÁ¦ 2)
+
 
 

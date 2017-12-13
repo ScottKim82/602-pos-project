@@ -1,12 +1,13 @@
 package order;
 
+//상품관련
 public class ProdBean {
 	
 	private int num;
 	private int categoryid;
 	private String productname;
 	private int price;
-	//private String categoryname;
+	private String categoryname;
 	
 	public ProdBean() {}
 
@@ -42,21 +43,21 @@ public class ProdBean {
 		this.price = price;
 	}
 
-	/*public String getCategoryname() {
+	public String getCategoryname() {
 		return categoryname;
 	}
 
 	public void setCategoryname(String categoryname) {
 		this.categoryname = categoryname;
-	}*/
+	}
 
-	public ProdBean(int num, int categoryid, String productname, int price/*, String categoryname*/) {
+	public ProdBean(int num, int categoryid, String productname, int price, String categoryname) {
 		super();
 		this.num = num;
 		this.categoryid = categoryid;
 		this.productname = productname;
 		this.price = price;
-		//this.categoryname = categoryname;
+		this.categoryname = categoryname;
 	}	
 	
 }

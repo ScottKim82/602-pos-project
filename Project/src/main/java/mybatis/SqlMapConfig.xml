@@ -8,11 +8,13 @@
 		<typeAlias alias="MyEmploee" type="employee.EmpBean"/>
 		<typeAlias alias="MyProduct" type="order.ProdBean"/>
 		<typeAlias alias="MyOrder" type="order.OrdBean"/>
+		<typeAlias alias="MyPayment" type="payment.PaymentBean"/>
 	</typeAliases>
 	
 	
 	<mappers>
 		<mapper resource="mybatis/employee.xml"/>
 		<mapper resource="mybatis/order.xml"/> 
+		<mapper resource="mybatis/payment.xml"/> 
 	</mappers>
 </configuration>

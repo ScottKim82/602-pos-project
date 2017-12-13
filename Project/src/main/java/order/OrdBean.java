@@ -1,12 +1,13 @@
 package order;
 
+//안쓰고있음
 public class OrdBean {
 	
 	private int oid;
 	private String date;
 	private int pnum;
 	private int qty;	
-	private int amount;
+	private int amount;		
 	
 	public int getOid() {
 		return oid;

@@ -20,24 +20,11 @@ public class OrdDao {
 	
 	public OrdDao() {}
 	
-	public List<OrdBean> selectList() {
+
+	//OrderDetailControllder	//상품+주문관련 join리스트가져오기 //PayMentController //리스트 가져오기
+	public List<HashMap<String, Object>> ShopDetailView(String oid) {
 		
-		List<OrdBean> list = new ArrayList<OrdBean>() ;
-		list = sqlSessionTemplate.selectList(namespace+".selectList");
-		return list;		
-	}
-	
-	public List<OrdBean> selectListByoid(int oid) {
-		
-		List<OrdBean> bean = new ArrayList<OrdBean>() ;
-		bean = sqlSessionTemplate.selectList(namespace+".selectByOid", oid);
-		
-		return bean;	
-	}
-	
-public List<HashMap<String, Object>> ShopDetailView(int oid) {
-		
-		Map<String, Integer> map = new HashMap<String, Integer>();
+		Map<String, String> map = new HashMap<String, String>();
 		map.put("oid", oid);
 		List<HashMap<String, Object>> maplists = null;
 		maplists = sqlSessionTemplate.selectList(namespace+".ShopDetailView", map);
@@ -47,22 +34,58 @@ public List<HashMap<String, Object>> ShopDetailView(int oid) {
 	
 	//OrderDetailController	//상품리스트가져오기
 	public List<ProdBean> selectProdList(String categoryid) {
-		System.out.println("dao.selectList: ");
-		System.out.println(categoryid);
+		//System.out.println("dao.selectList: ");
+		//System.out.println(categoryid);
 		
 		List<ProdBean> list = new ArrayList<ProdBean>() ;
+		
 		list = sqlSessionTemplate.selectList(namespace+".selectProdList", categoryid);
-		System.out.println("prod list.size()"+list.size());
+		//System.out.println("prod list.size()"+list.size());
 		return list;		
 }
 	
-	//ProdController	//주문추가
-	public Integer addProd(Map<String, String> map) {
-		int cnt = -1;	
-		System.out.println("dao.addProd");		
+	//ProdController	//상품 있을시 +1 	//OrderCancleController +추가
+	public Integer UpdateProd(Map<String, String> map) {
+		int cnt = -1;				
 		cnt = sqlSessionTemplate.update(namespace+".UpdateProd", map);
-		System.out.println("cnt: "+cnt);
+		return cnt;
+	}
+	
+	//ProdController	//상품없을시 insert +1
+	public Integer InsertProd(Map<String, String> map) {
+		int cnt = -1;				
+		cnt = sqlSessionTemplate.insert(namespace+".InsertProd", map);		
 		return cnt;
 	}
 
+	//OrderCancleController	//전체취소
+	public Integer deleteOrder(String oid) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.delete(namespace+".deleteOrder", oid);
+		return cnt;
+	}
+	
+	//OrderCancleController -빼기
+	public Integer UpdateQtyMinus(Map<String, String> map) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.update(namespace+".UpdateQtyMinus", map);
+		return cnt;
+	}
+	
+	//OrderCancleController	//상품정보가져오기
+	public OrdBean selectOrderOne(Map<String, String> map) {
+		OrdBean list = new OrdBean();
+		list = sqlSessionTemplate.selectOne(namespace+".selectByOid",map);
+		return list;
+	}
+	
+	//OrderCancleController	//수량1개남았을시 상품삭제하기
+	public Integer deleteByProd(Map<String, String> map){
+		int cnt = -1;
+		cnt = sqlSessionTemplate.update(namespace+".deleteByProd", map);
+		return cnt;
+	}	
+	
+
+	
 }

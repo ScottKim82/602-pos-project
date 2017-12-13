@@ -14,6 +14,8 @@ public class EmpDao {
 	
 	public EmpDao() {}
 	
+	
+	//LoginConctoller 로그인정보가져오기
 	public EmpBean EmpList(String id) {
 		System.out.println("dao.EmpList");	
 		System.out.println("id:"+id);

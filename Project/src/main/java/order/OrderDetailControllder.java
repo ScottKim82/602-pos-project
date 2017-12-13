@@ -19,41 +19,30 @@ public class OrderDetailControllder {
 	private static final String getPage="OrderDetail";
 	
 	@Autowired
-	OrdDao orderdao;	
+	OrdDao orderdao;
 	
-
+	
+	//List.jsp get 호출
 	@RequestMapping(command)
 	public String doActionGet(
-			@RequestParam(value="oid") int oid,
+			@RequestParam(value="oid") String oid,
 			@RequestParam(value="categoryid", required = false) String categoryid,
 			Model model) {
 		
-		System.out.println("OrderDetailControllder");
-		List<ShoppingInfo> shoplists = new ArrayList<ShoppingInfo>();
+		//System.out.println("OrderDetailControllder");
+		List<ShoppingInfo> shoplists = new ArrayList<ShoppingInfo>();	
 		
-		List<HashMap<String, Object>> lists = this.orderdao.ShopDetailView(oid);
-		System.out.println("lists.size(): "+lists.size());
-		
-		for(int i=0; i<lists.size(); i++) {
-			HashMap<String, Object> hash = lists.get(i);
-			Set<String> set = hash.keySet();
-			System.out.println("set: "+set);
-			//set:[pname, pnum, price, amount, qty]
-			
-			for(String s : set) {
-				Object obj= hash.get(s);
-				System.out.println("obj: "+obj);
-			}
-			System.out.println("------------------------");
-		}
+		List<HashMap<String, Object>> lists = this.orderdao.ShopDetailView(oid); //상품+주문관련 리스트
+
 		int totalcount = 0;
-		for(HashMap<String, Object> map: lists) {
+		
+		for(HashMap<String, Object> map: lists) {	//리스트에서 가져와서 shopinfo에 넣기
 			BigDecimal pnum= (BigDecimal)map.get("PNUM");	//BigDecimal 다운캐스팅
 			String pname =(String)map.get("PNAME");
 			BigDecimal qty = (BigDecimal)map.get("QTY");
 			BigDecimal price = (BigDecimal)map.get("PRICE");
 			BigDecimal amount = (BigDecimal)map.get("AMOUNT");
-			System.out.println(pname+"/"+qty+"/"+price+"/"+amount);
+			//System.out.println(pname+"/"+qty+"/"+price+"/"+amount);
 			
 			ShoppingInfo shopinfo = new ShoppingInfo();
 			shopinfo.setPnum(pnum.intValue());
@@ -61,7 +50,6 @@ public class OrderDetailControllder {
 			shopinfo.setQty(qty.intValue());
 			shopinfo.setPrice(price.intValue());
 			shopinfo.setAmount(amount.intValue());
-			
 				
 			shoplists.add(shopinfo);	
 			
@@ -72,18 +60,18 @@ public class OrderDetailControllder {
 		
 		List<order.ProdBean> prodlists = null;
 		
-		if(categoryid !=null) {			
-			prodlists = orderdao.selectProdList(categoryid);
-			System.out.println("갯수: "+ prodlists.size());
+		if(categoryid !=null) {		//OrderDetail.jsp에서 카테고리클릭시 get호출	
+			prodlists = orderdao.selectProdList(categoryid);	//카테고리id로 상품정보가져오기
+			//System.out.println("갯수: "+ prodlists.size());
 			model.addAttribute("prodlists", prodlists);		
 		}	
 		
-		model.addAttribute("oid", oid);		//송장번호(주문번호)
-		model.addAttribute("shoplists", shoplists);		
-		model.addAttribute("totalcount", totalcount);
+		model.addAttribute("oid", oid);		//주문번호
+		model.addAttribute("shoplists", shoplists);		//카테고리상품정보
+		model.addAttribute("totalcount", totalcount);	//총금액
 		
 		
-		return getPage;
+		return getPage;	//OrderDetail.jsp
 	}
 	
 	

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class LoginConctoller {
+public class LoginContoller {
 	
 	private static final String command= "/login.ep";
 	private static final String getPage = "redirect:/list.od";
@@ -25,6 +25,7 @@ public class LoginConctoller {
 	@Qualifier("myEmpDao")
 	EmpDao empdao;
 	
+	//Login.jsp에서 호출
 	@RequestMapping(value=command, method=RequestMethod.POST)
 	public ModelAndView doActionGet(HttpSession session,
 			HttpServletResponse response,
@@ -44,10 +45,10 @@ public class LoginConctoller {
 		writer =response.getWriter();
 		
 		
-		EmpBean bean = empdao.EmpList(id);	//리스트가져오기		
+		EmpBean login = empdao.EmpList(id);	//리스트가져오기		
 		
 		
-		if(bean==null) {	
+		if(login==null) {	//아이디가 없을경우
 			
 			System.out.println("null");
 							
@@ -58,10 +59,10 @@ public class LoginConctoller {
 				writer.flush();
 			
 				return new ModelAndView(getPage);
-		}else {			
-			System.out.println("test");
-			System.out.println(bean.getPassword());
-			if(!password.equals(bean.getPassword())){
+		}else {							//비밀번호가 없을경우
+			System.out.println("test");	
+			System.out.println(login.getPassword());
+			if(!password.equals(login.getPassword())){
 				
 				System.out.println("password.equals(bean.getPassword()");
 				writer.println("<script type='text/javascript'>");
@@ -72,14 +73,14 @@ public class LoginConctoller {
 				
 				return new ModelAndView(getPage);
 				
-			}else {
-				session.setAttribute("login", bean);
+			}else {	
+				session.setAttribute("login", login);	//로그인세션
 				mav.setViewName(getPage);
 		}
 					
 		}	
 		
-		return mav;
+		return mav;	//OrderListController
 	}
 
 }

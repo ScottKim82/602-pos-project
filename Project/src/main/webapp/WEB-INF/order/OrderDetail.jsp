@@ -13,10 +13,18 @@ function addProd(num, oid, categoryid){
 	location.href("prod.od?num="+num+"&oid="+oid+"&categoryid="+categoryid);
 }
 
+function UpdateQtyplus(oid, pnum){
+	location.href("ordercancle.od?oid="+oid+"&pnum="+pnum+"&qty=plus");	
+}
+
+function UpdateQtyminus(oid, pnum){
+	location.href("ordercancle.od?oid="+oid+"&pnum="+pnum+"&qty=minus");	
+}
 </script>
 
 </head>
 <body>
+
 OrderDetail.jsp
 <table>
 <tr>
@@ -33,7 +41,10 @@ OrderDetail.jsp
 	<c:forEach items="${shoplists}" var="lists" varStatus="status">
 			<tr>
 				<td align="center">${status.count}</td>
-				<td>${lists.pname}(${lists.pnum})</td>
+				<td>${lists.pname}(${lists.pnum})
+				<input type="button" value="+" name="cancle" onClick="UpdateQtyplus(${oid}, ${lists.pnum})">
+				<input type="button" value="-" name="cancle" onClick="UpdateQtyminus(${oid}, ${lists.pnum})">
+				</td>
 				<td align="center">${lists.qty}</td>
 				<td align="right">${lists.price}원</td>
 				<td align="right">${lists.amount}원</td>		
@@ -47,9 +58,10 @@ OrderDetail.jsp
 		
 		<tr>
 			<td colspan="5">
-				<input type="button" value="현금결제">
-				<input type="button" value="카드결제">
-				<input type="button" value="자리이동">
+			<form action="ordercancle.od" method="post">
+				<input type="hidden" value="${oid}" name="oid">
+				<input type="submit" value="전체취소">
+			</form>
 			</td>
 		</tr>
 	</table>	
@@ -69,7 +81,7 @@ OrderDetail.jsp
 	</table>	 
 	<tr>
 <td>
-<c:if test="${prodlists ==null}">
+<c:if test="${prodlists == null}">
 	<table>
 		<tr><td>
 		카테고리를 선택해주세요 
@@ -84,12 +96,23 @@ OrderDetail.jsp
 				<td>
 				<input type="button" value="${prodlists.productname}" name="productname" onclick="addProd(${prodlists.num}, ${oid}, ${prodlists.categoryid})"></td>
 				<td align="right">${prodlists.price}원</td>
+				
 				<!-- <td><input type="text" name="qty" size="3">개</td> -->
 		</c:forEach>
 	</table>
 </c:if>
 </td>
 </tr>
+
+<tr>	
+	<td>
+		<form action="orderend.od" method="post">
+			<input type="hidden" name="oid" value="${oid}">
+			<input type="hidden" name="lists" value="${shoplists}">
+			<input type="submit" value="결제하기">
+		</form>
+	</td> 
+	</tr>
 </table>
 
 </body>
