@@ -77,47 +77,27 @@ public class OrderController {
 		
 		String calculator = null;
 		
-		/*PrintWriter writer;
-		response.setContentType("text/html;charset=UTF-8");				
-		writer =response.getWriter();		
-		
-		/*if(total !=null){		//부분결제시
-			System.out.println("부분결제");
-			payment= Integer.parseInt(pay)-Integer.parseInt(cal);
-			System.out.println("payment:"+payment);			
-			calculator = null;
+		if(num !=null) {	//계산기클릭시 num값 넘어온다
 			
-			if(payment<0) {	//결제금액을 더 크게 입력했을때
-				writer.println("<script type='text/javascript'>");
-				writer.println("alert('결제하실 금액을 확인해주세요')");
-				writer.println("history.back()");
-				writer.println("</script>");				
-				writer.flush();
-				
-				calculator = null;
-				return "Payment";
-				
-			}					
-			
-		}*/
-		
-		if(num !=null) {	//계산기클릭시 num값 넘어온다			
-			if(cal == null) {	//계산기
+			if(num.equals("777")) {	//00두개 입력시
+				num = "00";
+			} 			
+			if(cal == null) {			//값이 없을시 넘어온값으로 셋팅
 				System.out.println("null");
-				calculator += num;			
-			}else {
+				calculator = num;
+			}else {						//값이 있을시 값+넘어온값
 				System.out.println("else");
 				calculator = cal + num;
 			}
 			
 			if(num.equals("999")) {	//초기화버튼클릭시
 				calculator=null;
-			}				
+			}			
 		}
-			
 		
-		
-		
+		/*if(cal==null) {			
+			calculator=null;
+		}*/
 			
 		model.addAttribute("calculator", calculator);
 		model.addAttribute("oid", oid);		//주문번호

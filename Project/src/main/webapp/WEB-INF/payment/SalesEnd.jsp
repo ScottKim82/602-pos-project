@@ -5,28 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
 </head>
 <body>
 
-	<panel>
-	<table border=1 width=100% height=100%>
-		
-		<tr height=40>
-
-			<td align=center><a
-				href="list.od">메인
-					</a></td>
-
-			<td align=center><a
-				href="">매출</a></td>
-
-			<td align=center><a
-				href="">마감 정산</a></td>
-
-		</tr>
-		</panel>
-		
-		
-		<tr>
-		<td colspan="3">
+</body>
+</html>

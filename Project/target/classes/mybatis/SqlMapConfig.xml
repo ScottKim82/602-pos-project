@@ -9,6 +9,7 @@
 		<typeAlias alias="MyProduct" type="order.ProdBean"/>
 		<typeAlias alias="MyOrder" type="order.OrdBean"/>
 		<typeAlias alias="MyPayment" type="payment.PaymentBean"/>
+		<typeAlias alias="MyPaymentday" type="payment.PaymentdayBean"/>
 	</typeAliases>
 	
 	

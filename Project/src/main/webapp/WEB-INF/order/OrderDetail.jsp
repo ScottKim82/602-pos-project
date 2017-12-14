@@ -8,18 +8,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script>
-function addProd(num, oid, categoryid){
-	location.href("prod.od?num="+num+"&oid="+oid+"&categoryid="+categoryid);
-}
-
-function UpdateQtyplus(oid, pnum){
-	location.href("ordercancle.od?oid="+oid+"&pnum="+pnum+"&qty=plus");	
-}
-
-function UpdateQtyminus(oid, pnum){
-	location.href("ordercancle.od?oid="+oid+"&pnum="+pnum+"&qty=minus");	
-}
+<script type="text/javascript">
+	function addProd(num, oid, categoryid){
+		location.href="prod.od?num="+num+"&oid="+oid+"&categoryid="+categoryid;
+	}
+	
+	function UpdateQtyplus(oid, pnum){
+		location.href="ordercancle.od?oid="+oid+"&pnum="+pnum+"&qty=plus";	
+	}
+	
+	function UpdateQtyminus(oid, pnum){
+		location.href="ordercancle.od?oid="+oid+"&pnum="+pnum+"&qty=minus";	
+	}
 </script>
 
 </head>

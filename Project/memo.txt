@@ -142,6 +142,7 @@ CREATE TABLE payment (
 INSERT INTO payment VALUES('±è¹ä',1, 3000, 3000, sysdate);
 INSERT INTO payment VALUES('±è¹ä',1, 3000, 3000, '17-12-13');
 
+drop table paymentday purge ;
 
 create table paymentday(
 	totalprice number,

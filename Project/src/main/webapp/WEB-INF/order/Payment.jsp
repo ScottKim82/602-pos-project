@@ -55,8 +55,7 @@ function payment2(lists){
 					</c:if>	
 					<c:if test="${calculator!=null}">
 					${calculator}
-					</c:if>	 													
-									
+					</c:if>
 					</td></tr>
 					<tr>
 					<%
@@ -70,7 +69,7 @@ function payment2(lists){
 						}				
 					%>
 						<td><input type="button" onclick="window.location='orderend.od?num=<%=0%>&oid=${oid}&cal=${calculator}&payment=${payment}'" value="0"> </td>
-						<td><input type="button" onclick="window.location='orderend.od?num=<%=00%>&oid=${oid}&cal=${calculator}&payment=${payment}'" value="00"> </td>
+						<td><input type="button" onclick="window.location='orderend.od?num=<%=777%>&oid=${oid}&cal=${calculator}&payment=${payment}'" value="00"> </td>
 						<td><input type="button" onclick="window.location='orderend.od?num=<%=999%>&oid=${oid}&cal=${calculator}&payment=${payment}'" value="C"> </td>		
 					</tr>
 				</table>	
@@ -94,11 +93,13 @@ function payment2(lists){
 				<input type="hidden" value="${payment}" name="payment">
 				<input type="hidden" value="${totalcount}" name="totalcount">
 				<input type="hidden" value="2" name="paymenttype">			
-				<input type="submit" value="현금결제">			
+				<input type="submit" value="현금결제">							
 			</form>
 			</td>
 		</tr>
 	</table>
+	
+	
 
 </body>
 </html>

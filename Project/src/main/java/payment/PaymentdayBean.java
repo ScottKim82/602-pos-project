@@ -5,6 +5,7 @@ public class PaymentdayBean {
 	int totalprice;
 	int paymenttype;
 	String paydate;
+	
 	public int getTotalprice() {
 		return totalprice;
 	}

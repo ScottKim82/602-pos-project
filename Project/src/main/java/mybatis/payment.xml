@@ -31,5 +31,15 @@
 		insert into paymentday 
 		values(#{totalprice},#{paymenttype},#{paydate})
 	</insert>
+	
+	<select id="selectPayList" resultType="MyPayment">
+		select * from payment 
+		where paydate = #{paydate}
+	</select>
+	
+		<select id="selectPaydayList" resultType="MyPaymentday">
+		select * from paymentday 
+		where paydate = #{paydate}
+	</select>
 
 </mapper>
