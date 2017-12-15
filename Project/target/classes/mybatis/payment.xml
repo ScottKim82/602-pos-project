@@ -39,7 +39,7 @@
 	
 		<select id="selectPaydayList" resultType="MyPaymentday">
 		select * from paymentday 
-		where paydate = #{paydate}
+		where paydate like #{paydate}
 	</select>
 
 </mapper>

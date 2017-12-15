@@ -61,9 +61,9 @@ public class PaymentDao {
 	}
 	
 	//SlesControllder	//paymentday 리스트 가져오기
-	public List<PaymentdayBean> selectPaydayList(String today){
+	public List<PaymentdayBean> selectPaydayList(String month){
 		List<PaymentdayBean> lists = new ArrayList<PaymentdayBean>();
-		lists = sqlSessionTemplate.selectList(namespace+".selectPaydayList", today);
+		lists = sqlSessionTemplate.selectList(namespace+".selectPaydayList", month);
 		return lists;
 	}
 }

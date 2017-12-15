@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./../common/common.jsp" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,54 +26,14 @@
 	  
 	  onSelect: function(dateText, inst){ 
 		  
-		  location.href="dailey.pm?dayday="+dateText;
 		  
-		  /*var dateArr = dateText.split("/"); 
-
-			year = dateArr[2]; 
-			month = dateArr[0]; 
-			day = dateArr[1];
-			
-			Day = getStrDay(day);
-			
-			$("#dateInput").val(dateText);
-			
-			actionDAY();
-
-			 location.href="dailey.pm?dayday="+Day;
-			
-						
-			
-			dayday = "";
-			dayday += $("#dateInput").val();
-			
-			Day = getStrDay(dayday);	 */
+		  location.href="dailey.pm?dayday="+dateText+"&sales=dailey";
+		
 	  }		  
   });
     
- });
- 
- function getStrDay(Day) {
-	 
-	 alert(Day);
-	 
-     Day = Day + "";
-     if (Day.length == 1) {
-         Day = "0" + Day;
-     }
-     return Day;
- }
- 
- /* function actionDAY(){
-	
-	dayday = "";
-	dayday += $("#dateInput").val();
-	
-	alert(dayday);
-	
-	location.href="dailey.pm?dayday="+dayday;
-	 
- } */
+ }); 
+
 </script>
 
 
@@ -84,7 +45,6 @@
 </div>
 <p>
    <input type="button" id="datepicker" value="날짜 선택"/><br><br>
-   Date: <input type="text" id="dateInput" /><br>
  </p>
 	<h2>${today}</h2>
 <table border="1">
@@ -109,6 +69,8 @@
 <b>
 총금액: ${totalprice}원
 </b>
+
+
 </center>
 </body>
 </html>
