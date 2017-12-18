@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pay.payMent">
+	
+	<select id="selectOrder" resultType="MyPayment">
+		select p.productname pname, od.qty, p.price, 
+		p.price * od.qty as amount, od.orderdate as paydate   
+		from foodorder od inner join product p 
+		on od.pnum = p.num and od.oid=#{oid} 
+		order by od.oid desc
+	</select>
+	
+	<update id="updatePayment">
+		update payment set qty=qty+#{qty}, amount=(qty+#{qty})*price  
+		where pname=#{pname} and paydate=#{paydate}
+	</update>
+	
+	<insert id="insertPayment">
+		insert into payment 
+		values(#{pname}, #{qty}, #{price}, #{amount}, to_date(#{paydate}))
+	</insert>
+	
+	<update id="Updatepaymentday">
+		update paymentday set totalprice = totalprice+#{totalprice} 
+		where paydate = #{paydate} and paymenttype= #{paymenttype}
+	</update>
+	
+	<insert id="insertPaymentDay">
+		insert into paymentday 
+		values(#{totalprice},#{paymenttype},#{paydate})
+	</insert>
+	
+	<select id="selectPayList" resultType="MyPayment">
+		select * from payment 
+		where paydate = #{today}
+	</select>
+	
+	<select id="selectPaydayList" resultType="MyPaymentday">
+		select * from paymentday 
+		where paydate like #{month}
+	</select>
+
+	<select id="selectPaydayList2" resultType="MyPaymentday">
+		select * from paymentday
+		where paydate = #{today}
+	</select>
+	
+	<update id="editPrice">
+		update paymentday set totalprice = #{editPrice} 
+		where paymenttype=2
+	</update>
+</mapper>
