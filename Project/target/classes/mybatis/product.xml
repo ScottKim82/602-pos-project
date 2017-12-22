@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pro.product">
+	<select id="selectProductList" resultType="MyProduct">
+		select num, categoryid, productname, price, categoryname 
+		from product natural join category 
+		order by categoryid
+	</select>
+	
+	<select id="ProductListBycate" resultType="MyProduct">
+		select num, categoryid, productname, price, categoryname 
+		from product natural join category  
+		where categoryid = #{categoryid} 
+		order by categoryid 
+	</select>
+	
+	<insert  id="InsertProduct">
+		insert into product 
+		values(pro_seq.nextval, #{categoryid}, #{productname}, #{price})
+	</insert>
+	
+	<update id="UpdateProd">
+		update product set 
+		productname = #{productname}, price=#{price} 
+		where num = #{num}
+	</update>
+	
+	<delete id="DeleteProd">
+		delete from product 
+		where num = #{num}
+	</delete>
+	
+	<select id="selectProdsales" resultType="MyPayment">
+		select * from payment 
+		where pname = #{productname} 
+		order by paydate desc
+	</select>
+
+</mapper>
