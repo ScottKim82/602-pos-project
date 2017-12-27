@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias alias="MyEmploee" type="employee.EmpBean"/>
+		<typeAlias alias="MyProduct" type="product.ProductBean"/>
+		<typeAlias alias="MyOrder" type="order.OrdBean"/>
+		<typeAlias alias="MyPayment" type="payment.PaymentBean"/>
+		<typeAlias alias="MyPaymentday" type="payment.PaymentdayBean"/>
+		<typeAlias alias="MyMemo" type="employee.MemoBean"/>
+	</typeAliases>
+	
+	
+	<mappers>
+		<mapper resource="mybatis/employee.xml"/>
+		<mapper resource="mybatis/order.xml"/> 
+		<mapper resource="mybatis/payment.xml"/> 
+		<mapper resource="mybatis/product.xml"/> 
+	</mappers>
+</configuration>

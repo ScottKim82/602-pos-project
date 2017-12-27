@@ -1,0 +1,182 @@
+Member(Àû¸³¿ë)
+no
+phone
+point
+
+
+------------------------------------------------------------------------------------------------------------
+
+drop table foodorder;
+
+ÁÖ¹®Å×ÀÌºí(ÁÖ¹®¹øÈ£,ÁÖ¹®½Ã°£,»óÇ°¹øÈ£,¼ö·®)
+create table foodorder(
+  oid number not null,
+  orderdate date default sysdate, 
+  pnum number references product(num) on delete set null,
+  qty number
+);
+
+insert into foodorder values(1, sysdate, 1, 4);
+insert into foodorder values(1, sysdate, 10, 2);
+insert into foodorder values(1, sysdate, 13, 1);
+insert into foodorder values(1, sysdate, 4, 1);
+insert into foodorder values(1, sysdate, 2, 2);
+insert into foodorder values(1, sysdate, 5, 1);
+insert into foodorder values(3, sysdate, 3, 1);
+
+------------------------------------------------------------------------------------------------------------
+
+drop sequence emp_seq;
+create sequence emp_seq start with 1 increment by 1 nocache ;
+
+drop table EMPLOYEE purge ;
+
+Á÷¿øÅ×ÀÌºí(Á÷¿ø¹øÈ£,ÀÌ¸§,¾ÆÀÌµð,ÆÐ½º¿öµå,µî±Þ)
+CREATE TABLE EMPLOYEE (
+  num number NOT NULL PRIMARY KEY, 
+  name VARCHAR2(45), 
+  id varchar2(45), 
+  password VARCHAR2(45),
+  grande varchar2(45) 
+);
+
+insert into employee values(emp_seq.nextval, '±è±Ô°æ', 'ss1', '1234', '»çÀå')
+insert into employee values(emp_seq.nextval, '¸Å´ÏÀú', 'ss2', '1234', 'Áö¹èÀÎ')
+insert into employee values(emp_seq.nextval, 'ÇÑ½ÂÈñ', 'ss3', '1234', 'Á÷¿ø')
+insert into employee values(emp_seq.nextval, 'ÀÌÁø¿À', 'ss4', '1234', 'Á÷¿ø')
+
+------------------------------------------------------------------------------------------------------------
+drop sequence cate_seq;
+create sequence cate_seq start with 1 increment by 1 nocache ;
+
+drop table CATEGORY purge ;
+
+Ä«Å×°í¸®Å×ÀÌºí
+CREATE TABLE CATEGORY (
+  categoryid number not null primary key, 
+  categoryname varchar2(45)
+);
+
+INSERT INTO CATEGORY VALUES(cate_seq.nextval,'±è¹ä·ù');
+INSERT INTO CATEGORY VALUES(cate_seq.nextval,'¸é·ù');
+INSERT INTO CATEGORY VALUES(cate_seq.nextval,'ºÐ½Ä·ù');
+INSERT INTO CATEGORY VALUES(cate_seq.nextval,'µ¤¹ä·ù');
+INSERT INTO CATEGORY VALUES(cate_seq.nextval,'Âî°³·ù');
+INSERT INTO CATEGORY VALUES(cate_seq.nextval,'±âÅ¸');
+
+------------------------------------------------------------------------------------------------------------
+drop sequence pro_seq;
+create sequence pro_seq;
+
+drop table product purge ;
+
+»óÇ°Å×ÀÌºí
+CREATE TABLE product (
+  num number primary key, 
+  categoryid number not null, 
+  productname varchar2(45), 
+  price number 
+);
+
+
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,1,'±è¹ä',3000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,1,'Ä¡Áî±è¹ä',3500);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,1,'ÂüÄ¡±è¹ä',3500);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,1,'°è¶õ¸»ÀÌ±è¹ä',3500);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,1,'¼Ò°í±â±è¹ä',4000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,1,'°íÃß±è¹ä',3500);
+
+
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,2,'¶ó¸é',2500);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,2,'¶±¶ó¸é',3000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,2,'±èÄ¡¶ó¸é',3000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,2,'ºñºö±¹¼ö',3500);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,2,'ÀÜÄ¡±¹¼ö',3500);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,2,'¿ìµ¿',4000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,2,'Ä®±¹¼ö',5000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,2,'¼öÁ¦ºñ',4500);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,2,'ÂÌ¸é',4500);
+
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,3,'¶±ººÀÌ',3000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,3,'¶óººÀÌ',3500);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,3,'¶±±¹',5000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,3,'¸¸µÔ±¹',5000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,3,'±èÄ¡¸¸µÎ',3000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,3,'°í±â¸¸µÎ',3500);
+
+
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,4,'Á¦À°µ¤¹ä',5500);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,4,'¿ÀÂ¡¾îµ¤¹ä',6000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,4,'ÂüÄ¡±èÄ¡µ¤¹ä',5500);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,4,'»õ¿ìººÀ½¹ä',5000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,4,'ÇØ¹°ººÀ½¹ä',6000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,4,'Ä«·¹¶óÀÌ½º',5000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,4,'¿À¹Ç¶óÀÌ½º',5500);
+
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,5,'µÈÀåÂî°³',5000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,5,'±èÄ¡Âî°³',5000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,5,'ºÎ´ëÂî°³',6000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,5,'À°°³Àå',5500);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,5,'°¥ºñÅÁ',7000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,5,'¶Ò¹è±âºÒ°í±â',6000);
+
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,6,'°ø±â¹ä',1000);
+INSERT INTO PRODUCT VALUES(pro_seq.nextval,6,'ÁÖ¸Ô¹ä',3000);
+
+commit;
+
+------------------------------------------------------------------------------------------------------------
+
+drop table payment purge ;
+
+»óÇ°Å×ÀÌºí
+CREATE TABLE payment (  
+  pname varchar2(45),
+  qty number, 
+  price number,
+  amount number,
+  paydate date default sysdate
+);
+
+
+INSERT INTO payment VALUES('±è¹ä',1, 3000, 3000, sysdate);
+INSERT INTO payment VALUES('±è¹ä',1, 3000, 3000, '17-12-13');
+INSERT INTO payment VALUES('±è¹ä',1, 3000, 3000, '17-12-12');
+INSERT INTO payment VALUES('±è¹ä',1, 3000, 3000, '17-12-11');
+INSERT INTO payment VALUES('±è¹ä',1, 3000, 3000, '17-12-10');
+INSERT INTO payment VALUES('±è¹ä',1, 3000, 3000, '17-12-09');
+INSERT INTO payment VALUES('±è¹ä',1, 3000, 3000, '17-12-08');
+INSERT INTO payment VALUES('±è¹ä',1, 3000, 3000, '17-12-07');
+INSERT INTO payment VALUES('±è¹ä',1, 3000, 3000, '17-12-06');
+INSERT INTO payment VALUES('±è¹ä',1, 3000, 3000, '17-12-05');
+
+drop table paymentday purge ;
+
+create table paymentday(
+	totalprice number,
+	paymenttype number,
+	paydate date default sysdate
+);
+(Ä«µå°áÁ¦ 1, Çö±Ý°áÁ¦ 2)
+
+
+¸Þ¸ðÅ×ÀÌºí
+
+drop table memo purge ;
+
+CREATE TABLE memo (
+  num number,  
+  context varchar2(100)
+);
+1 ¿À´Ã ÁÖ¹®Ç°¸ñ
+2 ¿¹¾à
+3 ¾Æ¸£¹ÙÀÌÆ®
+4 ¿Ü»ó
+
+insert into memo values(1, '±èÄ¡, ´Ü¹«Áö, ¿ìµ¿, ÂüÄ¡2Äµ');
+insert into memo values(2, 'ÀÌ¸ð¾¾ 6¸í');
+insert into memo values(3, '10½Ã~ 20½Ã');
+insert into memo values(4, '±è¸ð¾¾ 20000¿ø');
+
+
+

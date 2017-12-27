@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="empl.employee">
+	<select id="selectEmp" resultType="MyEmploee" parameterType="hashmap">
+		select * from employee 
+		where id = #{id}
+	</select>
+	
+	<select id="selectMemo1" resultType="MyMemo">
+		select * from memo 
+		where num = 1
+	</select>
+	<select id="selectMemo2" resultType="MyMemo">
+		select * from memo 
+		where num = 2
+	</select>
+	<select id="selectMemo3" resultType="MyMemo">
+		select * from memo 
+		where num = 3
+	</select>
+	<select id="selectMemo4" resultType="MyMemo">
+		select * from memo 
+		where num = 4
+	</select>
+	
+	<insert id="insertMemo">
+		insert into memo values(#{num}, #{context})
+	</insert>
+	
+	<delete id="deleteMemo">
+		delete from memo 
+		where num = #{num}
+	</delete>
+</mapper>
